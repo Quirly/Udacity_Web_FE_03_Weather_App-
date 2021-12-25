@@ -2,8 +2,8 @@
 projectData = {};
 
 // Require Express to run server and routes
-const express = require('express')
-const bodyParser = require('body-parser')
+const express = require('express');
+const bodyParser = require('body-parser');
 const cors = require('cors');
 
 // Start up an instance of app
@@ -20,5 +20,24 @@ app.use(cors());
 // Initialize the main project folder
 app.use(express.static('website'));
 
-
 // Setup Server
+const port = 3000;
+const server = app.listen(port, listening);
+
+function listening() {
+    console.log("Server running!")
+    console.log("Running on localhost: " + port);
+}
+
+app.get('', getForecastData)
+
+function getForecastData(req, res) {
+    res.send(projectData)
+}
+
+app.post('/project', (req, res) => {
+    const { date, temp, content } = req.body
+    projectData.push(req.body)
+    console.log("post received")
+    console.log(projectData)
+})
