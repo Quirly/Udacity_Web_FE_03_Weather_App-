@@ -1,7 +1,7 @@
 /* Global Variables */
 let baseURL1 = 'http://api.openweathermap.org/data/2.5/forecast?zip='
 let baseURL2 = ',DE&appid='
-let apiKey = '5e1bee3b55832ada9e8f7cb36510b302'
+let apiKey = 'xxxxxxxxxxxxxxxxxxxxxxx'
 
 //User Input
 const the_date = document.getElementById('date');
@@ -66,7 +66,7 @@ function performAction(e) {
             return { date: newDate, temp: temp_c, content: feelings.value }
         })
         .then(data => {
-            postData('/project', data);
+            postData('localhost:3000/project', data);
             return data
         })
         .then(({ temp, date, content }) => UpdateUI(temp, date, content))

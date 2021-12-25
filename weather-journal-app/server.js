@@ -5,6 +5,7 @@ projectData = {};
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const { response } = require('express');
 
 // Start up an instance of app
 const app = express();
@@ -40,4 +41,5 @@ app.post('/project', (req, res) => {
     projectData.push(req.body)
     console.log("post received")
     console.log(projectData)
+    response.send(projectData)
 })
