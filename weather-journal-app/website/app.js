@@ -1,7 +1,7 @@
 /* Global Variables */
 let baseURL1 = 'http://api.openweathermap.org/data/2.5/forecast?zip='
 let baseURL2 = ',DE&appid='
-let apiKey = '5e1bee3b55832ada9e8f7cb36510b302'
+let apiKey = 'yourapikey'
 
 //User Input
 const the_date = document.getElementById('date');
