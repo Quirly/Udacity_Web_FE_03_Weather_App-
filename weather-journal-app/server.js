@@ -22,7 +22,7 @@ app.use(cors());
 app.use(express.static('website'));
 
 // Setup Server
-const port = 3000;
+const port = 3000
 const server = app.listen(port, listening);
 
 function listening() {
@@ -30,16 +30,17 @@ function listening() {
     console.log("Running on localhost: " + port);
 }
 
-app.get('', getForecastData)
+app.get('/', getForecastData)
 
 function getForecastData(req, res) {
     res.send(projectData)
 }
 
-app.post('/project', (req, res) => {
+app.post('/addData/addData.html', sendForecastData)
+
+function sendForecastData(req, res) {
     const { date, temp, content } = req.body
-    projectData.push(req.body)
-    console.log("post received")
-    console.log(projectData)
-    response.send(projectData)
-})
+    res.send(date, temp, content)
+}
+
+

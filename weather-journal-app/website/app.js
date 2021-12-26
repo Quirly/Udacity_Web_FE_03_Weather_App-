@@ -1,7 +1,7 @@
 /* Global Variables */
 let baseURL1 = 'http://api.openweathermap.org/data/2.5/forecast?zip='
 let baseURL2 = ',DE&appid='
-let apiKey = 'xxxxxxxxxxxxxxxxxxxxxxx'
+let apiKey = '5e1bee3b55832ada9e8f7cb36510b302'
 
 //User Input
 const the_date = document.getElementById('date');
@@ -52,7 +52,6 @@ const UpdateUI = async (temp, date, content) => {
     document.getElementById('content').innerText = content
 }
 
-project_data = []
 //Declare Fetch Function
 function performAction(e) {
     getWeatherForecast(baseURL1, baseURL2, apiKey)
@@ -66,13 +65,8 @@ function performAction(e) {
             return { date: newDate, temp: temp_c, content: feelings.value }
         })
         .then(data => {
-            postData('localhost:3000/project', data);
-            return data
+            postData('/addData/addData.html', data);
+            //return data
         })
         .then(({ temp, date, content }) => UpdateUI(temp, date, content))
-    //.then(temp_c, newDate, feeling_now => { UpdateUI(temp_c, newDate, feeling_now) })
-    //postData('/project', { 'temp': temp })
-    //document.getElementById('temp').innerHTML = String(temp_c.toFixed(2)) + " °C"
-    //document.getElementById('date').innerHTML = String(newDate)
-    //document.getElementById('content').innerHTML = String(feeling_now)
 }
