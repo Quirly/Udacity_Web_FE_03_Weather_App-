@@ -1,7 +1,11 @@
 /* Global Variables */
 let baseURL1 = 'http://api.openweathermap.org/data/2.5/forecast?zip='
-let baseURL2 = ',DE&appid='
-let apiKey = 'yourapikey'
+/*API Call for German locations*/
+//let baseURL2 = ',DE&appid='
+/*API Call for US locations*/
+let baseURL2 = '&appid='
+/*Please replace 'yourApiKey' by your ApiKey you got after registration on www.openweatherapi.com*/
+let apiKey = 'yourApiKey'
 
 //User Input
 const the_date = document.getElementById('date');
@@ -17,7 +21,7 @@ document.getElementById('generate').addEventListener('click', performAction);
 
 
 //Async Promise
-const getWeatherForecast = async (baseURL1, baseURL2, apiKey) => {
+const getWeatherForecast = async (url, baseURL1, baseURL2, apiKey) => {
 
     let zipcode = (document.getElementById('zip').value).toString()
     const res = await fetch(baseURL1 + zipcode + baseURL2 + apiKey)
@@ -54,7 +58,9 @@ const UpdateUI = async (temp, date, content) => {
 
 //Declare Fetch Function
 function performAction(e) {
-    getWeatherForecast(baseURL1, baseURL2, apiKey)
+    //let temp_k = parseFloat(data.list[0].main.temp)
+    let feeling_now = (document.getElementById('feelings').value).toString()
+    getWeatherForecast('/', baseURL1, baseURL2, apiKey)
         .then(data => {
             let temp_k = parseFloat(data.list[0].main.temp)
             let temp_c = String((temp_k - 273.15).toFixed(2)) + " °C"
@@ -62,11 +68,13 @@ function performAction(e) {
             console.log(temp_c)
             console.log(newDate)
             console.log(feeling_now)
+            console.log({ date: newDate, temp: temp_c, content: feelings.value })
             return { date: newDate, temp: temp_c, content: feelings.value }
         })
         .then(data => {
-            postData('/addData/addData.html', data);
-            //return data
+            postData('/addData', data);
+            return data
         })
         .then(({ temp, date, content }) => UpdateUI(temp, date, content))
+
 }

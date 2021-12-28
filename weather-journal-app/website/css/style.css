@@ -1,0 +1,282 @@
+/*(1) MOBILE VIEW*/
+/*Background*/
+body{
+    background: gray;
+    background-image: url('image_back_sw.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: Oswald;
+    justify-content: center;
+    align-items: center;
+}
+
+/*GUI*/
+.appContainer{
+    color: white;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Content holder*/
+.holder_zip{
+    width:80vw;
+}
+.holder_feel{
+    width:80vw;
+}
+.holder_button{
+    width:80vw;
+}
+.holder_entry{
+    width:80vw;
+}
+
+/*GUI Title*/
+#holder_headline{
+    padding-left: 5px;
+    font-size: 40px;
+    width:100vw;
+    color:turquoise;
+    text-align: center;
+}
+
+/*License Image*/
+#copy{
+    padding-top:8vh;
+    padding-left:5px;
+    font-size: 12px;
+    color:white;
+}
+
+/*Zipcode Input Box*/
+#zip{
+    border-style: solid;
+    border-radius: 2px;
+    border-color: slategray;
+    border-width: 2px;
+    padding-bottom: 10px;
+    padding-left:5px;
+    width:80vw;
+    color: #f03;
+}
+
+/*"How are you feeling today?" Input Box*/
+#feelings{
+    border-style: solid;
+    border-radius: 2px;
+    border-color: slategray;
+    border-width: 2px;
+    padding-bottom: 10px;
+    width:80vw;
+}
+
+/*Button "Generate"*/
+#generate{
+    padding-top: 5px;
+    padding-left: 5px;
+    align-items: center;
+    width: 83vw;
+}
+
+/*"Most Recent Entry"*/
+#entryHolder{
+    color:slategrey;
+    display:flex;
+    font-size: 20px;
+    flex-direction: column;
+    width:80vw;
+    height:14vh;
+    align-items: stretch;
+    border-style: solid;
+    border-radius: 2px;
+    border-color:slategray;
+    border-width: 2px;  
+    background-color: white;
+    padding-left: 5px;
+    padding-top:5px;
+}
+
+/*Headline*/
+.holder_headline {
+    font-size:28px;
+    color:white;
+    padding-left: 10px;
+}
+
+/*"Most Recent Entry" Headline*/
+.title{
+    font-size:26px;
+    color:white;
+    width:80vw;
+    padding-top:20px;
+    padding-left:5px;
+}
+
+/*Input Box displaying last entries*/
+.entry{
+    width:80vw;
+}
+
+
+/*  Basic Styling To Override Default For Basic HTML Elements */
+label{
+    display:block;
+    color:white;
+    font-size: 28px;
+    padding-left:5px;
+    padding-top:20px;
+    padding-bottom:5px;
+    width:100vw;
+}
+
+input{
+    display:block;
+    width:150px;
+    background:white;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+}
+
+button{
+    width: 80vw;
+    height: 10vh;
+    background: #f03;
+    color: white;
+    font-size: 26px;
+    font-family: 'Oswald', sans-serif;
+    border: solid;
+    border-color: white;
+    box-shadow: 2px 4px 5px #444;
+}
+h1{
+    font-size: 36px;
+}
+
+textarea{
+    padding-left:5px;
+    background:white;
+    color: #f03;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+}
+/* Reset style for HTML element on active to have no border*/
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+/* Style for Placeholder Text*/
+::placeholder { /* Firefox, Chrome, Opera */ 
+    color:slategray;
+    padding-left:5px;
+    font-family: 'Oswald', sans-serif;
+
+} 
+  
+:-ms-input-placeholder { /* Internet Explorer 10-11 */ 
+    color:slategray;
+    padding-left: 5px;
+    font-family: 'Oswald', sans-serif;
+
+} 
+  
+::-ms-input-placeholder { /* Microsoft Edge */ 
+    color:slategray;
+    font-family: 'Oswald', sans-serif;
+
+} 
+
+
+/*(2) DESKTOP-VIEW*/
+@media(min-width:760px) {
+
+.appContainer{
+    width:30vw;
+    height:100%;
+    align-items: stretch;
+}
+
+.entry{
+    font-size:26px;
+    padding-top:40px;
+    width: 80vw;
+}
+
+.button_zip{
+    padding-top:20px;
+    width:82vw;
+}
+
+.holder_zip{
+    padding-left: 10px;
+    width:40%;
+    height:40px;
+}
+
+.holder_feel{
+    width:40%;
+    height:40px;
+}
+
+.holder_entry{
+    width:40%;
+    height:30px;
+}
+
+#holder_headline{
+    width:40vw;
+    padding-top: 5px;
+    padding-left:5px;
+    text-align: left;
+    font-size: 60px;
+    -webkit-text-stroke: 2px gray; /* width and color */
+}
+
+#feelings{
+    width:26vw;
+}
+
+#generate{
+    width:26.5vw;
+    align-items: center;
+}
+
+#entryHolder{
+    display:flex;
+    flex-direction: column;
+    width:26vw;
+    height:12vh;
+}
+
+#zip{
+    width:26vw;
+}
+
+#copy{
+    padding-top:18vh;
+    padding-left:5px;
+    font-size: 12px;
+    color:white;
+}
+
+.entry{
+    width:26vw;
+}
+.holder_zip{
+    width:26vw;
+}
+.holder_feel{
+    width:26vw;
+}
+.holder_entry{
+    width:26vw;
+}
+.holder_button{
+    padding-top: 20px;
+    width: 27vw;
+}
+        
+    }
