@@ -4,8 +4,8 @@ let baseURL1 = 'http://api.openweathermap.org/data/2.5/forecast?zip='
 //let baseURL2 = ',DE&appid='
 /*API Call for US locations*/
 let baseURL2 = '&appid='
-/*Please replace 'yourApiKey' by your ApiKey you got after registration on www.openweatherapi.com*/
-let apiKey = 'yourApiKey'
+/*Please replace '<your_api_key>&units=imperial>' by your ApiKey you got after registration on www.openweatherapi.com*/
+let apiKey = '<your_api_key>&units=imperial>'
 
 //User Input
 const the_date = document.getElementById('date');
