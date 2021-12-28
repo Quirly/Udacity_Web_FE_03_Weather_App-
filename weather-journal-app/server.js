@@ -1,6 +1,6 @@
 // Setup empty JS object to act as endpoint for all routes
-const projectData = [];
-const allData = [];
+const projectData = {};
+let idx = 0;
 
 // Require Express to run server and routes
 const express = require('express');
@@ -34,7 +34,6 @@ function listening() {
 app.get('/', getForecastData)
 
 function getForecastData(req, res) {
-    //res.send('hello world')
     res.send(projectData)
     console.log("Response sent!")
 }
@@ -42,9 +41,11 @@ function getForecastData(req, res) {
 app.post('/addData', sendForecastData)
 
 function sendForecastData(req, res) {
-    const { date, temp, content } = req.body
-    allData.push(req.body)
-    console.log(allData)
+    const { date, temp, content } = req.body;
+    let journal_entry_new = [date, temp, content]
+    projectData[idx] = journal_entry_new
+    idx = idx + 1
+    console.log(projectData)
     res.send(date, temp, content)
     console.log("Post sucessful.")
 }
