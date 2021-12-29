@@ -42,12 +42,23 @@ app.post('/addData', sendForecastData)
 
 function sendForecastData(req, res) {
     const { date, temp, content } = req.body;
-    let journal_entry_new = [date, temp, content]
-    projectData[idx] = journal_entry_new
+    let journal_entry_new = new Object();
+    journal_entry_new.date = date;
+    journal_entry_new.temp = temp + "°C";
+    journal_entry_new.content = content;
+    idx_entry = String("entry_" + idx)
     idx = idx + 1
+    projectData[idx_entry] = JSON.stringify(journal_entry_new);
     console.log(projectData)
-    res.send(date, temp, content)
+    res.send(projectData)
     console.log("Post sucessful.")
 }
 
+app.get('/readData', readData)
+
+function readData(req, res) {
+    res.send(projectData)
+    console.log(projectData)
+    console.log("Read sucessful.")
+}
 

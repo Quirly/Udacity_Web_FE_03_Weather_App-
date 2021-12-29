@@ -1,11 +1,12 @@
 /* Global Variables */
-let baseURL1 = 'http://api.openweathermap.org/data/2.5/forecast?zip='
+const baseURL1 = 'http://api.openweathermap.org/data/2.5/forecast?zip='
 /*API Call for German locations*/
 //let baseURL2 = ',DE&appid='
 /*API Call for US locations*/
-let baseURL2 = '&appid='
+const baseURL2 = '&appid='
 /*Please replace '<your_api_key>&units=imperial>' by your ApiKey you got after registration on www.openweatherapi.com*/
-let apiKey = '<your_api_key>&units=imperial>'
+const apiKey = '<your_api_key>&units=imperial>'
+const metric = '&units=metric'
 
 //User Input
 const the_date = document.getElementById('date');
@@ -21,10 +22,10 @@ document.getElementById('generate').addEventListener('click', performAction);
 
 
 //Async Promise
-const getWeatherForecast = async (url, baseURL1, baseURL2, apiKey) => {
+const getWeatherForecast = async (url, baseURL1, baseURL2, apiKey, metric) => {
 
     let zipcode = (document.getElementById('zip').value).toString()
-    const res = await fetch(baseURL1 + zipcode + baseURL2 + apiKey)
+    const res = await fetch(baseURL1 + zipcode + baseURL2 + apiKey + metric)
 
     try {
         const data = await res.json();
@@ -50,20 +51,43 @@ const postData = async (url, data) => {
     }
 }
 
-const UpdateUI = async (temp, date, content) => {
-    document.getElementById('temp').innerText = temp
-    document.getElementById('date').innerText = date
-    document.getElementById('content').innerText = content
+const readData = async () => {
+
+    const request = await fetch('/readData');
+    try {
+        // Transform into JSON
+        const readData = await request.json()
+        console.log(readData)
+        return readData
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+
+const UpdateUI = async (data) => {
+    console.log("Data received:")
+    console.log(data)
+    console.log("Date: " + data[Object.keys(data)[0]])
+    console.log("Temp: " + data[Object.keys(data)[1]])
+    console.log("Content: " + data[Object.keys(data)[2]])
+    document.getElementById('temp').innerText = "Temperature is: " + data[Object.keys(data)[1]]
+    document.getElementById('date').innerText = "Date is: " + data[Object.keys(data)[0]]
+    document.getElementById('content').innerText = "Feeling is: " + data[Object.keys(data)[2]]
 }
 
 //Declare Fetch Function
 function performAction(e) {
     //let temp_k = parseFloat(data.list[0].main.temp)
+    if (document.getElementById('zip').value == "") {
+        alert("Please type in a zipcode, then I will know where to look up the weather for you!");
+        return
+    }
     let feeling_now = (document.getElementById('feelings').value).toString()
-    getWeatherForecast('/', baseURL1, baseURL2, apiKey)
+    getWeatherForecast('/', baseURL1, baseURL2, apiKey, metric)
         .then(data => {
-            let temp_k = parseFloat(data.list[0].main.temp)
-            let temp_c = String((temp_k - 273.15).toFixed(2)) + " °C"
+            /*let temp_k = parseFloat(data.list[0].main.temp)*/
+            /*let temp_c = String((temp_k - 273.15).toFixed(2)) + " °C"*/
+            let temp_c = parseFloat(data.list[0].main.temp) + " °C"
             let feeling_now = (document.getElementById('feelings').value).toString()
             console.log(temp_c)
             console.log(newDate)
@@ -75,6 +99,12 @@ function performAction(e) {
             postData('/addData', data);
             return data
         })
-        .then(({ temp, date, content }) => UpdateUI(temp, date, content))
+        .then(data => {
+            readData('/readData');
+            return data
+        })
+        .then(data => UpdateUI(data))
+
+
 
 }
